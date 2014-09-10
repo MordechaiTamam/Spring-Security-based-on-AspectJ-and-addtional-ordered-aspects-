@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- For assistance related to logback-translator or configuration  -->
+<!-- files in general, please contact the logback user mailing list -->
+<!-- at http://www.qos.ch/mailman/listinfo/logback-user             -->
+<!--                                                                -->
+<!-- For professional support please see                            -->
+<!--    http://www.qos.ch/shop/products/professionalSupport         -->
+<!--                                                                -->
+<configuration>
+	
+	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+       <file>test-comilion-framework</file>
+	    <append>true</append>
+	
+	    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+	        <fileNamePattern>test-comilion-framework.%i.log</fileNamePattern>
+	        <minIndex>1</minIndex>
+	        <maxIndex>30</maxIndex>
+	    </rollingPolicy>
+	
+	    <triggeringPolicy class="com.comilion.commons.logging.MySizeBasedTriggeringPolicy">
+	        <maxFileSize>30MB</maxFileSize>
+	    </triggeringPolicy>
+	    <encoder>
+			<pattern>%date %-5level %X{tid} - [%logger] - %msg%n</pattern>
+	    </encoder>
+	</appender>
+
+	  <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+	    <Target>System.out</Target>
+	    <encoder>
+	      <pattern>%date %-5level %X{tid} - [%logger] - %msg%n</pattern>
+	    </encoder>
+	  </appender>
+
+<!-- --> 	<logger name="org.springframework.data.mongodb" level="DEBUG"/>
+	<logger name="org.springframework" level="DEBUG"/>
+	<logger name="com.mangofactory.swagger" level="WARN"/>
+	<logger name="org.springframework.test.context"  level="WARN"/>  
+	<logger name="com.comilion.fw.app.database.MongoEventListener"  level="WARN"/>
+	<logger name="com.comilion.fw.app.utils"  level="WARN"/>
+	<logger name="org.springframework.aop.framework.CglibAopProxy" level="WARN"/>
+	<logger name="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" level="WARN"/>
+  	<logger name="org.springframework.beans.factory.support" level="WARN"/>
+  	<logger name="org.springframework.web.servlet.handler" level="WARN"/>  
+  	<logger name="org.springframework.beans.factory.annotation" level="WARN"/>  
+	<logger name="org.springframework.web.context.support" level="WARN"/>  
+ 	<logger name="org.springframework.core" level="WARN"/> 
+	<logger name="org.springframework.security" level="DEBUG"/>
+	<logger name="org.springframework.test.web" level="DEBUG"/>
+	<logger name="org.hibernate.validator" level="WARN"/>  
+	<logger name="com.mongodb.DBCollectionImpl" level ="DEBUG"/>  
+	<logger name="org.springframework.jndi" level="WARN"/> 
+	<logger name="org.springframework.web.context.support.StandardServletEnvironment" level="WARN"/>
+	<logger name="org.springframework.data.auditing.AuditingHandler" level="WARN"/>
+	<logger name="org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventListener" level="WARN"/>
+	<logger name="com.comilion.fw.usersmanagement.bl.ParticipantUpdateListener" level="DEBUG"/>
+	<logger name="com.comilion.fw.app.database.MongoEventListenerDelegator" level="DEBUG"/>
+	<logger name="com.comilion" level="DEBUG"/>  
+  	<root level="DEBUG">
+    	<appender-ref ref="stdout"/>
+    	<appender-ref ref="file"/>
+  	</root>
+</configuration>
